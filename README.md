@@ -2,12 +2,12 @@
 个人密码加密解密服务
 
 # 部署服务
-部署前提：安装docker，并且初始化docker swarm
+部署前提：安装docker，并且初始化docker swarm，docker镜像已公布到阿里云镜像云所以无需编译。
 1，拷贝deploy文件夹下所有文件到服务器中，
 2，配置参数vi deploy/deploy-pwd.sh
 ```
 export SERVICE_VERSION=1.0.0
-export MAIL_USERNAME=邮件发送端
+export MAIL_USERNAME=邮件发送端，默认支持126邮箱
 export MAIL_PASSWORD=邮件发送端密码
 export MAIL_RECEIVE_LIST=接收邮件列表，英文逗号分隔
 export RSA_PRIVATE=rsa私钥
