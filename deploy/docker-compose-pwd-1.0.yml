@@ -7,10 +7,10 @@ services:
       options:
         max-size: "50m"
     environment:
-      MYSQL_URL:
-      MYSQL_USERNAME:
-      MYSQL_PASSWORD:
-      OSS_PRIVATE_KEY_ID:
+      MAIL_USERNAME:
+      MAIL_PASSWORD:
+      MAIL_RECEIVE_LIST:
+      RSA_PRIVATE:
       OSS_PRIVATE_KEY_SECRET:
       OSS_PRIVATE_KEY_BUCKET:
       OSS_PRIVATE_REGION:
@@ -29,23 +29,4 @@ services:
       DNS_APP_PASSWORD:
       NODE_DEFAULT_DOMAIN:
     ports:
-      - 8081:8080/tcp
-      - 9910:9910/tcp
-  gw_nginx:
-    image: nginx:1.19
-    environment:
-      TZ: "Asia/Shanghai"
-    volumes:
-      - nginx_confs:/etc/nginx/conf.d
-      - nginx_certs:/etc/nginx/certs
-      - nginx_logs:/var/log/nginx
-    ports:
-      - 80:80/tcp
-      - 443:443/tcp
-volumes:
-  rabbitmq:
-  rabbitmq_config:
-  pgdata:
-  nginx_confs:
-  nginx_certs:
-  nginx_logs:
+      - 7453:8080/tcp
