@@ -1,0 +1,51 @@
+version: '3'
+services:
+  bm_service:
+    image: registry.cn-hangzhou.aliyuncs.com/pettyfox/pwd-service:${SERVICE_VERSION}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+    environment:
+      MYSQL_URL:
+      MYSQL_USERNAME:
+      MYSQL_PASSWORD:
+      OSS_PRIVATE_KEY_ID:
+      OSS_PRIVATE_KEY_SECRET:
+      OSS_PRIVATE_KEY_BUCKET:
+      OSS_PRIVATE_REGION:
+      OSS_PUBLIC_KEY_ID:
+      OSS_PUBLIC_KEY_SECRET:
+      OSS_PUBLIC_BUCKET:
+      OSS_PUBLIC_REGION:
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME:
+      RABBITMQ_PASSWORD:
+      RABBITMQ_NODE_HOST:
+      RABBITMQ_NODE_PORT:
+      RABBITMQ_VIRTUAL_HOST:
+      DNS_APP_ID:
+      DNS_APP_PASSWORD:
+      NODE_DEFAULT_DOMAIN:
+    ports:
+      - 8081:8080/tcp
+      - 9910:9910/tcp
+  gw_nginx:
+    image: nginx:1.19
+    environment:
+      TZ: "Asia/Shanghai"
+    volumes:
+      - nginx_confs:/etc/nginx/conf.d
+      - nginx_certs:/etc/nginx/certs
+      - nginx_logs:/var/log/nginx
+    ports:
+      - 80:80/tcp
+      - 443:443/tcp
+volumes:
+  rabbitmq:
+  rabbitmq_config:
+  pgdata:
+  nginx_confs:
+  nginx_certs:
+  nginx_logs:
